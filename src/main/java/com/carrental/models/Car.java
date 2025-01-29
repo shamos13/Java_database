@@ -12,7 +12,7 @@ public class Car {
     private String registrationNumber;
     private String brand;
 
-
+    // This constructor gets all the car details
     public Car(int id, String model, String brand, int car_year, String registration_number, double price_perDay, String car_status, int engine_size) {
         this.id = id;
         this.model = model;
@@ -24,20 +24,40 @@ public class Car {
         this.engineSize = engine_size;
     }
 
+    // This constructor method is used for getting car details before any update or delete
+    public Car(int id, String model, String brand, String carStatus){
+        this.id = id;
+        this.model = model;
+        this.brand = brand;
+        this.carStatus = carStatus;
+    }
+
+    public Car(String model, String brand, int carYear, String registrationNumber, double pricePerDay, String carStatus, int engineSize) {
+        this.model = model;
+        this.brand = brand;
+        this.modelYear = carYear;
+        this.registrationNumber = registrationNumber;
+        this.pricePerDay = pricePerDay;
+        this.carStatus = carStatus;
+        this.engineSize = engineSize;
+    }
+
     public String getRegistrationNumber() {
         return registrationNumber;
     }
 
-    public void setRegistrationNumber(String registrationNumber) {
+    public String setRegistrationNumber(String registrationNumber) {
         this.registrationNumber = registrationNumber;
+        return registrationNumber;
     }
 
     public String getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
+    public String setBrand(String brand) {
         this.brand = brand;
+        return brand;
     }
 
 
@@ -56,39 +76,44 @@ public class Car {
         return model;
     }
 
-    public void setModel(String model) {
+    public String setModel(String model) {
         this.model = model;
+        return model;
     }
 
     public int getEngineSize() {
         return engineSize;
     }
 
-    public void setEngineSize(int engineSize) {
+    public String setEngineSize(int engineSize) {
         this.engineSize = engineSize;
+        return null;
     }
 
     public int getModelYear() {
         return modelYear;
     }
 
-    public void setModelYear(int modelYear) {
+    public int setModelYear(int modelYear) {
         this.modelYear = modelYear;
+        return modelYear;
     }
 
     public double getPricePerDay() {
         return pricePerDay;
     }
 
-    public void setPricePerDay(double pricePerDay) {
+    public double setPricePerDay(double pricePerDay) {
         this.pricePerDay = pricePerDay;
+        return pricePerDay;
     }
 
     public String getCarStatus() {
         return carStatus;
     }
 
-    public void setCarStatus(String carStatus) {
+    public String setCarStatus(String carStatus) {
         this.carStatus = carStatus;
+        return carStatus;
     }
 }
