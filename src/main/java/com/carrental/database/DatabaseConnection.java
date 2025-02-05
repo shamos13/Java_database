@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class databaseConnection {
+public class DatabaseConnection {
     // This class handles the database connectivity
     private static final String USERNAME = "root";
     private static final String PASSWORD = "Tarak#23h!";

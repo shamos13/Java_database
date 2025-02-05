@@ -1,4 +1,4 @@
 package com.carrental.Services;
 
-public class bookingService {
+public class BookingService {
 }

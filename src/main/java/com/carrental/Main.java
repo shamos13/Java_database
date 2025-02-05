@@ -1,17 +1,23 @@
 package com.carrental;
-import com.carrental.DAO.carDAO;
-import com.carrental.models.Car;
-import com.carrental.Services.carService;
+import com.carrental.DAO.CarDAO;
+import com.carrental.DAO.UserDAO;
+import com.carrental.Services.CarService;
+import com.carrental.Services.UserService;
+import com.carrental.models.User;
 
+import javax.xml.transform.Source;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main  {
     Scanner input = new Scanner(System.in);
-    carDAO carDAO = new carDAO();
-    carService cs = new carService(carDAO);
-
+    CarDAO carDAO = new CarDAO();
+    CarService cs = new CarService(carDAO);
+    UserDAO userDAO = new UserDAO();
+    UserService usc = new UserService(userDAO);
 
     public Main() throws SQLException {
     }
@@ -39,8 +45,13 @@ public class Main  {
         int option = input.nextInt();
         switch (option){
             case 1:
-                availableCars();
+                cs.displayAvailableCars();
                 break;
+
+            case 2:
+               // getEmail();
+                break;
+
             case 4:
                 cs.addNewCar();
                 break;
@@ -49,7 +60,7 @@ public class Main  {
                 cs.displayAllCars();
                 break;
             case 6:
-                getAllCars();
+
                 Scanner input = new Scanner(System.in);
                 System.out.print("Car_id: ");
                 int id = input.nextInt();
@@ -59,12 +70,12 @@ public class Main  {
                 cs.updateCar(st,id);
                 break;
             case 7:
-                getAllCars();
+                cs.displayAllCars();
                 input = new Scanner(System.in);
                 System.out.print("Car_id: ");
                 id = input.nextInt();
                 cs.deleteCar(id);
-                getAllCars();
+                cs.displayAllCars();
                 break;
 
             default:
@@ -79,15 +90,22 @@ public class Main  {
                 Would you like to:
                 1. Signup 
                 2. login
+                3. Forgot password
                 """));
         System.out.print("Option: ");
         int option = input.nextInt();
         switch (option){
             case 1:
-                // logic goes here
+                newUser();
                 break;
             case 2:
+                usc.loginDisplay();
                 loginScreen();
+                break;
+
+            case 3:
+                reset();
+                //usc.resetPassword("akwatuha046@gmail.com", "tarak#23h!");
                 break;
 
             default:
@@ -95,44 +113,31 @@ public class Main  {
                 break;
         }
     }
-    public void availableCars() throws SQLException{
-        List<Car> cars = carDAO.getAvailableCars();
-
-        for (Car car : cars){
-            System.out.println(
-                    String.format("""
-                            Car_id:     %d
-                            Model:      %s
-                            Brand:      %s
-                            Car_year:   %d
-                            No. plate:  %s
-                            Dailyprice: $%.2f
-                            Status:     %s
-                            Engine_Capacity: %d cc
-                            """,car.getId(),car.getModel(),car.getBrand(),car.getModelYear(),car.getRegistrationNumber(),car.getPricePerDay(),car.getCarStatus(),car.getEngineSize()
-                    )
-            );
-            System.out.println("===================================================================");
-        }
-    }
-    public void getAllCars() throws SQLException{
-        List<Car> cars = carDAO.getAllCars();
-        for (Car car : cars){
-            System.out.println(
-                    String.format("""
-                            Car_id:     %d
-                            Model:      %s
-                            Brand:      %s
-                            Car_year:   %d
-                            No. plate:  %s
-                            Dailyprice: $%.2f
-                            Status:     %s
-                            Engine_Capacity: %d cc
-                            """,car.getId(),car.getModel(),car.getBrand(),car.getModelYear(),car.getRegistrationNumber(),car.getPricePerDay(),car.getCarStatus(),car.getEngineSize()
-                    )
-            );
-            System.out.println("===================================================================");
-        }
+    public boolean newUser(){
+        Scanner input = new Scanner(System.in);
+        System.out.print("First name: ");
+        String firstName = input.nextLine();
+        System.out.print("Last name: ");
+        String lastName = input.nextLine();
+        System.out.print("Email: ");
+        String email = input.nextLine();
+        System.out.print("Password: ");
+        String password = input.nextLine();
+        System.out.print("User Type: ");
+        String userInput = input.nextLine();
+        User user = new User(firstName,lastName,email,password,userInput);
+        return usc.SignUp(user);
 
     }
+    public boolean reset() throws SQLException {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Email: ");
+        String email = input.nextLine();
+        System.out.print("New Password: ");
+        String password = input.nextLine();
+        return usc.resetPassword(email, password);
+    }
+
+
+
 }

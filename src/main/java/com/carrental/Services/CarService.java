@@ -1,6 +1,6 @@
 package com.carrental.Services;
 // This class handles the business logic for the CarDAO and car class
-import com.carrental.DAO.carDAO;
+import com.carrental.DAO.CarDAO;
 import com.carrental.models.Car;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class carService {
+public class CarService {
     // This class handles all the business logic for the car
-    private final carDAO carDao;
+    private final CarDAO carDao;
 
 
-    public carService(carDAO carDao) {
+    public CarService(CarDAO carDao) {
         this.carDao = carDao;
     }
 
@@ -52,8 +52,11 @@ public class carService {
     public boolean updateCar(String carStatus, int car_id) throws SQLException {
         List<String> validStatus = Arrays.asList("Available", "Booked", "Maintenance");
         List<Integer> carIDs = carDao.getCarID();
-        if (!validStatus.contains(carStatus) && !carIDs.contains(car_id)) {
-            throw new IllegalArgumentException("Check the car Id and status");
+        if (!validStatus.contains(carStatus)) {
+            throw new IllegalArgumentException("Invalid car status");
+        }
+        if (!carIDs.contains(car_id)){
+            throw  new IllegalArgumentException("Invalid ID!!");
         }
         try {
             return carDao.updateCar(carStatus, car_id);
@@ -86,12 +89,12 @@ public class carService {
         System.out.print("Engine Size: ");
         int engineSize = input.nextInt();
         Car car = new Car(model, brand, car_year, registrationNumber, pricePerDay, carStatus, engineSize);
+        input.close();
         return addCar(car);
     }
 
     // Display methods
-    public void displayAllCars() throws SQLException{
-        List<Car> cars = carDao.getAllCars();
+    public void displayCars(List<Car> cars){
         // Print the header
         System.out.printf("%-5s | %-12s | %-12s | %-6s | %-10s | %-12s | %-12s | %-8s%n",
                 "ID","Model","Brand","Year","No. Plate","Daily Price", "Status", "Engine Size");
@@ -111,4 +114,11 @@ public class carService {
         }
 
     }
+    public void displayAllCars() throws SQLException{
+        displayCars(carDao.getAllCars());
+    }
+
+    public void displayAvailableCars() throws  SQLException{
+        displayCars(carDao.getAvailableCars());
+        }
 }

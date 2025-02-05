@@ -1,23 +1,22 @@
 package com.carrental.DAO;
 import com.carrental.models.Car;
-import com.carrental.database.databaseConnection;
+import com.carrental.database.DatabaseConnection;
 
 import java.sql.*;
 import java.util.*;
 
-public class carDAO {
+public class CarDAO {
 
     // initialize the database connection
       private Connection conn;
-      public carDAO() throws SQLException{
-          conn = databaseConnection.getConnection();
+      public CarDAO() throws SQLException{
+          conn = DatabaseConnection.getConnection();
       }
 
   public boolean addCar(Car car) throws SQLException {
       // This method adds a new car into the database
       String query = "INSERT INTO Cars (model, brand, car_year, registration_number, price_perDay, car_status, engine_size) VALUES (?,?,?,?,?,?,?)";
-      try{
-          PreparedStatement psmt = conn.prepareStatement(query);
+      try(PreparedStatement psmt = conn.prepareStatement(query)){
          psmt.setString(1,car.getModel());
          psmt.setString(2,car.getBrand());
          psmt.setInt(3,car.getModelYear());
@@ -93,17 +92,13 @@ public class carDAO {
           return false;
     }
 
-    public boolean deleteCar(int car_id){
+    public boolean deleteCar(int car_id) throws SQLException{
           String deleteQuery = "DELETE FROM Cars WHERE car_id=?";
           try(PreparedStatement psmt = conn.prepareStatement(deleteQuery)){
               psmt.setInt(1,car_id);
               return psmt.executeUpdate() > 0;
           }
-          catch (SQLException e){
-              e.printStackTrace();
 
-          }
-          return false;
     }
 
     public List<Integer> getCarID()throws SQLException{
