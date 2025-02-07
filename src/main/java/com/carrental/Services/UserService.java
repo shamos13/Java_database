@@ -2,100 +2,133 @@ package com.carrental.Services;
 
 import com.carrental.DAO.UserDAO;
 import com.carrental.models.User;
-import org.mindrot.jbcrypt.BCrypt;
+import com.carrental.utils.InputValidator;
+import com.carrental.utils.PasswordValidator;
 
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 // This class validates user login, signup validation and handles all the database logic
 
 public class UserService {
     private final UserDAO userDAO;
-    private static final String EMAIL_REGEX = "^[A-Za-z0-9]+@[A-Za-z.]+$";
 
-    public UserService(UserDAO userDAO)throws SQLException{
+
+    public UserService(UserDAO userDAO) throws SQLException {
         this.userDAO = userDAO;
     }
 
-    public boolean SignUp(User user){
-        if (user.getFirstName() == null || user.getLastName() == null){
-            throw new IllegalArgumentException("Name values can not be null!!");
+    public boolean SignUp(User user) {
+        if (user.getFirstName() == null || user.getLastName() == null) {
+            System.out.println("Name values can not be null!");
+            return false;
         }
-        if (user.getPassword()==null){
-            throw new IllegalArgumentException("Password can not be null");
+        if (user.getPassword() == null) {
+            System.out.println("Password can not be null");
+            return false;
         }
         List<String> validOption = Arrays.asList("Customer", "Admin");
-        if (!validOption.contains(user.getUserType())){
-            throw new IllegalArgumentException("Invalid user type");
+        if (!validOption.contains(user.getUserType())) {
+            System.out.println("Invalid user type can either be 'Customer' or 'Admin'");
+            return false;
         }
-       /* if (isValidEmail(user.getEmail())){
-            throw new IllegalArgumentException("Invalid email address");
-        }*/
-        // Hash the password before storage
-        String hashedPassword = hashPassword(user.getPassword());
-        user.setPassword(hashedPassword);
-        return userDAO.AddUser(user);
+        if (!InputValidator.isValidEmail(user.getEmail())) {
+            System.out.println("Invalid email address");
+            return false;
+        }
+        //Check if the User is added.
+        boolean isUserAdded = userDAO.AddUser(user);
+        if (isUserAdded){
+            // Hash the password before storage
+            String hashedPassword = PasswordValidator.hashPassword(user.getPassword());
+            user.setPassword(hashedPassword);
+        }
+        return isUserAdded;
     }
 
-
-    // Checks and confirms email is valid through regex
-    public static boolean isValidEmail(String email){
-        Pattern pattern = Pattern.compile(EMAIL_REGEX);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
-
-    // Hash passwords
-    private String hashPassword(String password){
-        return BCrypt.hashpw(password, BCrypt.gensalt());
-    }
 
     // Validate user login credentials
-    public boolean validateLogin(String UserEmail, String password){
-        try {
-        String storedPassword = userDAO.getPassword(UserEmail);
-        // Checks whether the email is valid
-            if (storedPassword == null) {
-                throw new IllegalArgumentException("Invalid email or password");
+    public boolean validateLogin() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
+        String validatedEmail = verifyEmail(scanner);
+
+        if (validatedEmail == null){
+            System.out.println("Invalid email");
+            return false;
+        }
+        return validatePassword(scanner, userDAO.getPassword(validatedEmail));
+    }
+
+    // Gets a valid email from the user
+    public static String getValidEmail(Scanner scanner){
+        while (true){
+            System.out.print("Enter your email: ");
+            String email = scanner.nextLine();
+            if (InputValidator.isValidEmail(email)){
+                return email;
             }
-            if (BCrypt.checkpw(password, storedPassword)) {
-                System.out.println("Login successful");
+            else {
+                System.out.println("Invalid Email! Try again!!");
+            }
+        }
+
+    }
+    // Check if the email exists in the database and validates it at the same time
+    public String verifyEmail(Scanner scanner) throws SQLException {
+        String email = getValidEmail(scanner);
+        if (userDAO.getUserEmails().contains(email.toLowerCase())) {
+            return email;
+        }else {
+            System.out.println("Email not found. Are you a registered user?");
+            return null;
+        }
+    }
+    // This method validates the password
+    public static boolean validatePassword(Scanner scanner, String hashedPassword){
+        for (int i=0;i<3;i++){
+            System.out.print("Password: ");
+            String password = scanner.nextLine();
+
+            // If the user enters the wrong password give them three tries
+            if (PasswordValidator.checkPassword(password, hashedPassword)){
                 return true;
-            }
-            else{
-                System.out.println("Wrong password!!");
-                return false;
+            }else  {
+                int tries = 2-i;
+                if (tries > 0) {
+                    System.out.println("Incorrect password! " + tries + " tries left.");
+                }
             }
         }
-        catch (SQLException e){
-            throw new RuntimeException("Error!!",e);
-        }
-
+        System.out.println("Access Denied!! Too many incorrect attempts! \nReset your password");
+        return false;
     }
 
-    public boolean resetPassword(String email, String newPassword) throws SQLException {
-
-        if (userDAO.getUserEmails().contains(email)){
-            try {
-                String hashedPassword = hashPassword(newPassword);
-                return userDAO.UpdatePassword(email, hashedPassword);
-            } catch (SQLException e) {
-                throw new RuntimeException("Can't update user password",e);
-            }
+    public boolean resetPassword() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
+        String email = verifyEmail(scanner);
+        if (email == null){
+            System.out.println("Invalid email");
+            return false;
         }
-        else {
-            throw new IllegalArgumentException("Email not found");
+        System.out.print("New Password: ");
+        String newPassword = scanner.nextLine();
+        String hashedPassword = PasswordValidator.hashPassword(newPassword);
+        return userDAO.UpdatePassword(email, hashedPassword);
+    }
+    public void adminPrivileges(String email) throws SQLException{
+        if (userDAO.isAdmin(email)){
+
         }
     }
-    public void loginDisplay() throws SQLException {
+}
+    /*public void loginDisplay() throws SQLException {
         Scanner input = new Scanner(System.in);
         System.out.print("Email: ");
         String email = input.nextLine();
         System.out.print("Password: ");
         String password = input.nextLine();
         validateLogin(email, password);
-    }
-}
+    }*/
+

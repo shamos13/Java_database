@@ -74,7 +74,20 @@ public class UserDAO {
         }
 
     }
+    // Validate if the user email is an admin
+    public boolean isAdmin(String email) throws SQLException{
+        String adminCheck = "SELECT user_type FROM users WHERE email=?";
+        try(PreparedStatement psmt = conn.prepareStatement(adminCheck)){
+            psmt.setString(1,email);
+            ResultSet rs = psmt.executeQuery();
+            if (rs.next()){
+                return "Admin".equals(rs.getString("user_type"));
+            }
 
+        }
+        return false;
+    }
+    // These methods can only be run by an admin
     public List<User> getUsers() throws SQLException{
         List<User> users = new ArrayList<>();
         String query = "SELECT * FROM users";

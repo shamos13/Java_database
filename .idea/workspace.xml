@@ -4,17 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f81d3ca-6b21-4b6a-b66e-8fc7200a2087" name="Changes" comment="">
+    <list default="true" id="8f81d3ca-6b21-4b6a-b66e-8fc7200a2087" name="Changes" comment="I've started to work on the user model">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/carrental/controllers/AdminMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/carrental/controllers/CustomerMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/carrental/controllers/MenuController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/carrental/utils/InputValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/carrental/utils/PasswordValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/DAO/carDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/DAO/CarDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/DAO/userDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/DAO/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/DAO/CarDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/DAO/CarDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/DAO/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/DAO/UserDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/Services/bookingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/Services/BookingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/Services/carService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/Services/CarService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/Services/userService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/Services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/database/databaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/database/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/Services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/Services/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +32,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;shamos13&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/shamos13/Java_database.git&quot;,
+    &quot;accountId&quot;: &quot;aaf572fb-c6b4-4281-8961-49d22162f459&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -40,20 +53,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.databaseConnection.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/cfreak97/Desktop/javaPrograms/CarRentalSystem",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PasswordValidator.executor&quot;: &quot;Run&quot;,
+    &quot;Application.databaseConnection.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/cfreak97/Desktop/javaPrograms/CarRentalSystem&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -63,6 +77,15 @@
       <option name="presentableId" value="Default" />
       <updated>1737486200555</updated>
     </task>
+    <task id="LOCAL-00001" summary="I've started to work on the user model">
+      <option name="closed" value="true" />
+      <created>1738787658206</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1738787658207</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -75,5 +98,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="I've started to work on the user model" />
+    <option name="LAST_COMMIT_MESSAGE" value="I've started to work on the user model" />
   </component>
 </project>

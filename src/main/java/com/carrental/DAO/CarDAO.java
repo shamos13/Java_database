@@ -76,7 +76,10 @@ public class CarDAO {
           }
           return availableCars;
     }
+    // Select an available car
 
+
+    // An admin method
     public boolean updateCar(String car_status, int car_id) throws SQLException {
           try{
                String updateQuery = "UPDATE Cars SET car_status=? where car_id=?";
