@@ -6,7 +6,6 @@ import java.sql.*;
 import java.util.*;
 
 public class CarDAO {
-
     // initialize the database connection
       private Connection conn;
       public CarDAO() throws SQLException{

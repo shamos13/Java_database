@@ -14,10 +14,12 @@ import java.util.Scanner;
 
 public class UserService {
     private final UserDAO userDAO;
+    private final Scanner scanner;
 
 
     public UserService(UserDAO userDAO) throws SQLException {
         this.userDAO = userDAO;
+        this.scanner = new Scanner(System.in);
     }
 
     public boolean SignUp(User user) {
@@ -38,24 +40,33 @@ public class UserService {
             System.out.println("Invalid email address");
             return false;
         }
-        //Check if the User is added.
-        boolean isUserAdded = userDAO.AddUser(user);
-        if (isUserAdded){
-            // Hash the password before storage
+        try {
+            if (userDAO.emailExists(user.getEmail())){
+                System.out.println("Email already exists");
+                return false;
+            }
+            // Hash the passwords before storage
             String hashedPassword = PasswordValidator.hashPassword(user.getPassword());
             user.setPassword(hashedPassword);
+            if (userDAO.AddUser(user)){
+                System.out.println("Registration successful! You can now login!");
+                return true;
+            }
+            else {
+                System.out.println("Registration unsuccessful! Email may already exist");
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
         }
-        return isUserAdded;
+        return false;
     }
 
 
     // Validate user login credentials
     public boolean validateLogin() throws SQLException {
-        Scanner scanner = new Scanner(System.in);
-        String validatedEmail = verifyEmail(scanner);
+        String validatedEmail = verifyEmail();
 
         if (validatedEmail == null){
-            System.out.println("Invalid email");
             return false;
         }
         return validatePassword(scanner, userDAO.getPassword(validatedEmail));
@@ -76,14 +87,13 @@ public class UserService {
 
     }
     // Check if the email exists in the database and validates it at the same time
-    public String verifyEmail(Scanner scanner) throws SQLException {
+    public String verifyEmail() throws SQLException {
         String email = getValidEmail(scanner);
-        if (userDAO.getUserEmails().contains(email.toLowerCase())) {
-            return email;
-        }else {
+        if (!userDAO.getUserEmails().contains(email.toLowerCase())) {
             System.out.println("Email not found. Are you a registered user?");
             return null;
         }
+        return email;
     }
     // This method validates the password
     public static boolean validatePassword(Scanner scanner, String hashedPassword){
@@ -106,10 +116,9 @@ public class UserService {
     }
 
     public boolean resetPassword() throws SQLException {
-        Scanner scanner = new Scanner(System.in);
-        String email = verifyEmail(scanner);
+        String email = verifyEmail();
         if (email == null){
-            System.out.println("Invalid email");
+
             return false;
         }
         System.out.print("New Password: ");
@@ -117,18 +126,16 @@ public class UserService {
         String hashedPassword = PasswordValidator.hashPassword(newPassword);
         return userDAO.UpdatePassword(email, hashedPassword);
     }
+    public int getUserID() throws SQLException{
+        String email = verifyEmail();
+        return userDAO.getUserID(email);
+    }
     public void adminPrivileges(String email) throws SQLException{
         if (userDAO.isAdmin(email)){
+
 
         }
     }
 }
-    /*public void loginDisplay() throws SQLException {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Email: ");
-        String email = input.nextLine();
-        System.out.print("Password: ");
-        String password = input.nextLine();
-        validateLogin(email, password);
-    }*/
+
 

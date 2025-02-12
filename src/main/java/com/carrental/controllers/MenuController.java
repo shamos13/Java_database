@@ -25,7 +25,7 @@ public class MenuController {
     public void welcomeScreen()throws SQLException {
             System.out.println("""
                     +++++++++++++++++++++++++++++++++++++++++
-                    Hi <user> welcome to kiongozi travellers
+                    Hi! welcome to kiongozi travellers
                     +++++++++++++++++++++++++++++++++++++++++
                     Would you like to:
                     1. Signup\s
@@ -52,7 +52,7 @@ public class MenuController {
         }
 
    // sets the parameter for the new user
-   public void newUser(){
+   public boolean newUser(){
         System.out.println("=========== Sign Up =============\n+++++++++++++++++++++++++++++++++++++++");
         System.out.print("First name: ");
         String firstName = scanner.nextLine();
@@ -64,25 +64,19 @@ public class MenuController {
         String password = scanner.nextLine();
         String userInput = "Customer";
         User user = new User(firstName,lastName,email,password,userInput);
-        userService.SignUp(user);
-
-        if (userService.SignUp(user)){
-            System.out.println("Registration Successful, You can now log in");
-        }
-        else {
-            System.out.println("Registration unsuccessful, Email may already exist!");
-        }
+        return userService.SignUp(user);
     }
-
+    
    public void loginScreen() throws SQLException{
        System.out.println(String.format("""
                 ======================================================================
                 |\t\t\t\t\t Kiongozi Travellers
                 ======================================================================
-                Hi <user> welcome to Kiongozi travellers what would you like to do:
+                Hi! welcome to Kiongozi travellers what would you like to do:
                 1. Get available cars
                 2. See my Bookings
                 3. Request a new car
+                4. Clear a booking
                 """));
        System.out.print("Option: ");
        int option = scanner.nextInt();

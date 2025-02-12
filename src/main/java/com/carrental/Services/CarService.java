@@ -44,7 +44,7 @@ public class CarService {
     public boolean deleteCar(int car_id) throws SQLException {
         List<Integer> carIDs = carDao.getCarID();
         if (!carIDs.contains(car_id)) {
-            throw new IllegalArgumentException("Car with " + car_id + " does not exist!!");
+            System.out.println("Car with " + car_id + " does not exist!!");
         }
         return carDao.deleteCar(car_id);
     }

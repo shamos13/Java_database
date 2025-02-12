@@ -1,13 +1,26 @@
 package com.carrental.models;
 
+import java.util.Date;
+
 public class Booking {
     // Data fields
     private int id;
-    private String startDate;
-    private String endDate;
+    private Date startDate;
+    private Date endDate;
     private double totalPrice;
+    private String status;
     private int userID;
     private int carID;
+
+    public Booking(int userID, Date startDate, Date endDate, double totalPrice, String status, int carID){
+        this.userID = userID;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.totalPrice = totalPrice;
+        this.status = status;
+        this.carID = carID;
+
+    }
 
     // Accessor methods
 
@@ -19,19 +32,19 @@ public class Booking {
         this.id = id;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
@@ -57,5 +70,13 @@ public class Booking {
 
     public void setCarID(int carID) {
         this.carID = carID;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

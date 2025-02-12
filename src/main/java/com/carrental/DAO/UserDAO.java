@@ -74,6 +74,19 @@ public class UserDAO {
         }
 
     }
+    // Get user id by email
+    public int getUserID(String email) throws SQLException{
+        String query = "SELECT user_id FROM users where email=?";
+        try (PreparedStatement psmt = conn.prepareStatement(query)){
+            psmt.setString(1,email);
+            ResultSet resultSet = psmt.executeQuery();
+            if (resultSet.next()){
+                return resultSet.getInt("user_id");
+            }
+        }
+        return 0;
+    }
+
     // Validate if the user email is an admin
     public boolean isAdmin(String email) throws SQLException{
         String adminCheck = "SELECT user_type FROM users WHERE email=?";
@@ -114,7 +127,21 @@ public class UserDAO {
             psmt.setInt(1, user_id);
             return psmt.executeUpdate() > 0;
         }
+    }
 
+    public boolean emailExists(String email) throws  SQLException{
+        String query = "SELECT COUNT(*) AS count FROM users WHERE email=?";
+        try (PreparedStatement psmt = conn.prepareStatement(query)){
+            psmt.setString(1,email);
+            ResultSet rs = psmt.executeQuery();
+            if (rs.next()){
+                int count = rs.getInt("count");
+                return count > 0; //if email exists return True
+            }
+            else {
+                return false;
+            }
+        }
     }
 
     /* This method hashed my already stored passwords
