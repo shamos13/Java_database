@@ -37,7 +37,7 @@ public class CarService {
             return carDao.addCar(car);
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Error addding car to the database", e);
+            throw new RuntimeException("Error adding car to the database", e);
         }
     }
 
@@ -66,32 +66,10 @@ public class CarService {
         }
     }
 
-    //Adds new cars
-    public boolean addNewCar() {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Model: ");
-        String model = input.nextLine();
-
-        System.out.print("Brand: ");
-        String brand = input.nextLine();
-
-        System.out.print("Car year: ");
-        int car_year = input.nextInt();
-        input.nextLine();
-        System.out.print("No. plate: ");
-        String registrationNumber = input.nextLine();
-
-        System.out.print("Daily Price: ");
-        double pricePerDay = input.nextDouble();
-        input.nextLine();
-        System.out.print("Car Status: ");
-        String carStatus = input.nextLine();
-        System.out.print("Engine Size: ");
-        int engineSize = input.nextInt();
-        Car car = new Car(model, brand, car_year, registrationNumber, pricePerDay, carStatus, engineSize);
-        input.close();
-        return addCar(car);
+    public double getTotalPrice(int carID) throws SQLException{
+        return carDao.getCarPrice(carID);
     }
+
 
     // Display methods
     public void displayCars(List<Car> cars){

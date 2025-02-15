@@ -3,9 +3,12 @@ package com.carrental.controllers;
 import com.carrental.Services.BookingService;
 import com.carrental.Services.CarService;
 import com.carrental.Services.UserService;
+import com.carrental.models.Booking;
 import com.carrental.models.User;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
 public class MenuController {
@@ -13,12 +16,12 @@ public class MenuController {
     private final Scanner scanner;
     private final UserService userService;
     private final CarService carService;
-    //private final BookingService bookingService;
+    private final BookingService bookingService;
 
-    public MenuController(UserService userService, CarService carService, Scanner scanner){
+    public MenuController(UserService userService, CarService carService, BookingService bookingService,Scanner scanner){
         this.userService = userService;
         this.carService = carService;
-        //this.bookingService = bookingService;
+        this.bookingService = bookingService;
         this.scanner = scanner;
     }
 
@@ -86,10 +89,43 @@ public class MenuController {
            break;
 
            case 2:
+               bookingService.displayUserBookings(userService.getUserID());
                break;
 
            case 3:
+               if (newBooking()){
+                   System.out.println("You've successfully Rented a car");
+               }
+               else {
+                   newBooking();
+               }
                break;
+           case 4:
+               bookingService.displayUserBookings(userService.getUserID());
+               System.out.print("Enter BookingID: ");
+               int bookingID = scanner.nextInt();
+               bookingService.clearBooking(bookingID,userService.getUserID());
+
+
        }
+
+   }
+   public boolean newBooking() throws SQLException {
+       //Display available cars for booking
+        carService.displayAvailableCars();
+        System.out.print("Enter the CarID of the car you want: ");
+        int carID = scanner.nextInt();
+        scanner.nextLine();
+
+        int userID = userService.getUserID();
+        String startDate = "Input StartDate as (dd-MM-yyyy): ";
+        LocalDate StartDate = bookingService.validateDate(scanner, startDate);
+        String endDate = "Input EndDate as (dd-MM-yyyy): ";
+        LocalDate EndDate = bookingService.validateDate(scanner, endDate);
+        long difference = ChronoUnit.DAYS.between(StartDate,EndDate);
+        long total_price = (long) (difference * (carService.getTotalPrice(carID)));
+        String bookingStatus = "confirmed";
+        Booking booking = new Booking(userID, StartDate, EndDate, total_price, bookingStatus, carID);
+        return bookingService.addBooking(booking);
    }
 }

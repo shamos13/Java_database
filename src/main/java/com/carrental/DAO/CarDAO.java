@@ -75,7 +75,26 @@ public class CarDAO {
           }
           return availableCars;
     }
-    // Select an available car
+
+    //Get the price of the car by carID
+    public double getCarPrice(int carID) throws SQLException{
+          String query = "SELECT price_perDay from Cars WHERE car_id = ?";
+          try (PreparedStatement psmt = conn.prepareStatement(query)){
+              psmt.setInt(1,carID);
+              ResultSet rs = psmt.executeQuery();
+              if (rs.next()){
+                  return rs.getDouble("price_perDay");
+              }
+              return 0;
+          }
+    }
+
+    // Get the name and  model of the car by its id
+    public String getCarName(int carID) throws SQLException{
+          String query = "SELECT ";
+          return query;
+
+    }
 
 
     // An admin method

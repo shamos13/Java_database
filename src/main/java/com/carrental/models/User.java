@@ -31,6 +31,7 @@ public class User {
         this.userType = userType;
     }
 
+    // This constructor gets the email already stored
     public User(String email) {
         this.email = email;
     }

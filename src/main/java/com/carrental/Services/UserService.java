@@ -15,6 +15,7 @@ import java.util.Scanner;
 public class UserService {
     private final UserDAO userDAO;
     private final Scanner scanner;
+    private String loggedInEmail;
 
 
     public UserService(UserDAO userDAO) throws SQLException {
@@ -69,7 +70,11 @@ public class UserService {
         if (validatedEmail == null){
             return false;
         }
-        return validatePassword(scanner, userDAO.getPassword(validatedEmail));
+        if ( validatePassword(scanner, userDAO.getPassword(validatedEmail))){
+            loggedInEmail = validatedEmail;
+            return true;
+        }
+        return false;
     }
 
     // Gets a valid email from the user
@@ -118,7 +123,6 @@ public class UserService {
     public boolean resetPassword() throws SQLException {
         String email = verifyEmail();
         if (email == null){
-
             return false;
         }
         System.out.print("New Password: ");
@@ -127,9 +131,14 @@ public class UserService {
         return userDAO.UpdatePassword(email, hashedPassword);
     }
     public int getUserID() throws SQLException{
-        String email = verifyEmail();
-        return userDAO.getUserID(email);
+        if (loggedInEmail != null) {
+            return userDAO.getUserID(loggedInEmail);
+        }
+        else {
+            throw new RuntimeException("Unable to get User ID! Please restart The System");
+        }
     }
+
     public void adminPrivileges(String email) throws SQLException{
         if (userDAO.isAdmin(email)){
 
