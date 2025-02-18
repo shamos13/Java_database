@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-This is a small fun practice project which Mimics the car rental system. 
-The purpose of this project is to challenge my understanding of Java's OOP concepts and Dependency injection, which gears me towards 
-becoming a Springboot developer.
-This project was entirely built using raw java (without a framework), JDBC (for database connectivity) and uses Maven for Dependency Management. 
-Interaction with this program is mainly from the terminal.
-
-The main entry point for this program is from the main class.
-=======
 # Car Rental System
 
 ## **Overview**
@@ -198,5 +189,5 @@ For any inquiries or issues, please contact Amos Prosper Kwatuha.
 akwatuha04\@gmail.com
 
 Thanks. Have Fun coding
->>>>>>> 84dbfef (This is the final commit with the Database Dump and the full System code)
+
 
