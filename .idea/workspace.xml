@@ -6,15 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8f81d3ca-6b21-4b6a-b66e-8fc7200a2087" name="Changes" comment="Almos complete on the whole system now I'm working on integrating the Booking class into the system">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/DAO/BookingDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/DAO/BookingDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/DAO/CarDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/DAO/CarDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/Services/BookingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/Services/BookingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/Services/CarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/Services/CarService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/Services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/Services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/controllers/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/controllers/AdminMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/controllers/CustomerMenu.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/controllers/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/models/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/models/Booking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/models/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +60,7 @@
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/cfreak97/Desktop/javaPrograms/dougPractice",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager"

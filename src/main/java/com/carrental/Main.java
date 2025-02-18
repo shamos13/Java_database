@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main  {
-
+// This is the main entry point for the program
 
     public static void main(String[] args) throws SQLException{
         Scanner input = new Scanner(System.in);
@@ -25,8 +25,7 @@ public class Main  {
         BookingService bs = new BookingService(bookingDAO);
         MenuController menuController = new MenuController(usc,cs,bs,input);
         menuController.welcomeScreen();
-        //AdminMenu adm = new AdminMenu(input,cs);
-        //adm.welcomeScreen();
+
 
     }
 

@@ -18,7 +18,7 @@ public class UserService {
     private String loggedInEmail;
 
 
-    public UserService(UserDAO userDAO) throws SQLException {
+    public UserService(UserDAO userDAO){
         this.userDAO = userDAO;
         this.scanner = new Scanner(System.in);
     }
@@ -50,7 +50,6 @@ public class UserService {
             String hashedPassword = PasswordValidator.hashPassword(user.getPassword());
             user.setPassword(hashedPassword);
             if (userDAO.AddUser(user)){
-                System.out.println("Registration successful! You can now login!");
                 return true;
             }
             else {
@@ -139,11 +138,29 @@ public class UserService {
         }
     }
 
-    public void adminPrivileges(String email) throws SQLException{
-        if (userDAO.isAdmin(email)){
-
-
+    public boolean adminPrivileges() throws SQLException{
+        return (userDAO.isAdmin(loggedInEmail));
+    }
+    public void displayUsers() throws  SQLException{
+        List<User> users = userDAO.getUsers();
+        // Print the header
+        System.out.printf("%-5s | %-15s | %-15s | %-15s | %-10s%n",
+                "Id","First Name","Last Name","Email","User Type");
+        for (User user : users){
+            System.out.printf("%-5d | %-15s | %-15s | %-15s | %-10s%n",
+                    user.getId(),
+                    user.getFirstName(),
+                    user.getLastName(),
+                    user.getEmail(),
+                    user.getUserType());
         }
+    }
+    public boolean deleteUsers(int userID) throws SQLException{
+        displayUsers();
+        if (!userDAO.deleteUser(userID)){
+            return false;
+        }
+        return userDAO.deleteUser(userID);
     }
 }
 
