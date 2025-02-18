@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f81d3ca-6b21-4b6a-b66e-8fc7200a2087" name="Changes" comment="Almos complete on the whole system now I'm working on integrating the Booking class into the system">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rentalSystem.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/Services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/Services/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/controllers/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/controllers/AdminMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/controllers/CustomerMenu.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/controllers/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/database/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/database/DatabaseConnection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

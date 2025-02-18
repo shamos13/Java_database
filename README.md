@@ -105,7 +105,7 @@ The Car Rental System is implemented using Java with the following structure:
 
 The system uses a secure password hashing method to ensure user credentials are protected:
 
-- The `PasswordValidator` class hashes passwords using a cryptographic hash function (e.g., SHA-256).
+- The `PasswordValidator` class hashes passwords using a cryptographic hash function (Bcrypt).
 - Passwords are never stored in plain text.
 
 ---
@@ -152,8 +152,9 @@ cd car-rental-system
 
 - Compile and run the application using your preferred IDE or the command line:
   ```bash
-  javac -d bin $(find ./src -name "*.java")
-  java -cp bin com.carrental.Main
+  mvn clean install
+  mvn exec:java -Dexec.mainClass="com.carrental.Main"
+
   ```
 
 ### **6. Using the System**
