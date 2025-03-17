@@ -42,7 +42,8 @@ The Car Rental System is designed for Kiongozi Travellers to manage car rentals 
 ---
 ## **Screenshots**
 
-### Adding a New Car
+### Adding a New User
+
 ![Add Car](./screenshots/1(signup).png)
 
 ### Viewing Available Cars
