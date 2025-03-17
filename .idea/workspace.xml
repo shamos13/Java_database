@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f81d3ca-6b21-4b6a-b66e-8fc7200a2087" name="Changes" comment="Almos complete on the whole system now I'm working on integrating the Booking class into the system">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/Services/BookingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/Services/BookingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/Services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/Services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/controllers/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/controllers/AdminMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carrental/controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carrental/controllers/MenuController.java" afterDir="false" />
+    <list default="true" id="8f81d3ca-6b21-4b6a-b66e-8fc7200a2087" name="Changes" comment="Adding Screenshots with few additional improvements">
+      <change afterPath="$PROJECT_DIR$/screenshots/1(signup).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screenshots/2(login_and_booking).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screenshots/3(Available_cars).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screenshots/Add a Car.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screenshots/Admin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screenshots/AllCars.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screenshots/AvailablCars.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screenshots/Delete.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screenshots/carmananager.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +118,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739387116382</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Adding Screenshots with few additional improvements">
+      <option name="closed" value="true" />
+      <created>1742203413745</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1742203413745</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,6 +146,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="I've started to work on the user model" />
     <MESSAGE value="Almos complete on the whole system now I'm working on integrating the Booking class into the system" />
-    <option name="LAST_COMMIT_MESSAGE" value="Almos complete on the whole system now I'm working on integrating the Booking class into the system" />
+    <MESSAGE value="Adding Screenshots with few additional improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding Screenshots with few additional improvements" />
   </component>
 </project>
