@@ -5,9 +5,8 @@ import com.carrental.DAO.UserDAO;
 import com.carrental.Services.BookingService;
 import com.carrental.Services.CarService;
 import com.carrental.Services.UserService;
-import com.carrental.controllers.AdminMenu;
 import com.carrental.controllers.MenuController;
-import com.carrental.models.User;
+
 
 import java.sql.SQLException;
 import java.util.Scanner;

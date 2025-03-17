@@ -77,7 +77,7 @@ public class UserService {
     }
 
     // Gets a valid email from the user
-    public static String getValidEmail(Scanner scanner){
+    public  String getValidEmail(Scanner scanner){
         while (true){
             System.out.print("Enter your email: ");
             String email = scanner.nextLine();

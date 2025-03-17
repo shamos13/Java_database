@@ -40,6 +40,34 @@ The Car Rental System is designed for Kiongozi Travellers to manage car rentals 
 - Proper error messages for invalid inputs and system exceptions.
 
 ---
+## **Screenshots**
+
+### Adding a New Car
+![Add Car](./screenshots/1(signup).png)
+
+### Viewing Available Cars
+![View Cars](./screenshots/3(Available_cars).png)
+
+### Booking a Car
+![Book Car](./screenshots/2(login_and_booking).png)
+
+### Admin Interface
+![Admin_Page](./screenshots/Admin.png)
+### Manage Cars
+![Manage_Cars](./screenshots/carmananager.png)
+
+### Getting all Cars
+![All Cars](./screenshots/AllCars.png)
+### Adding a new Car
+![Add_Car](./screenshots/Add%20a%20Car.png)
+
+### Deleting a Car
+![Delete Car](./screenshots/Delete.png)
+
+### Available Cars
+![Available Cars](./screenshots/AvailablCars.png)
+
+
 
 ## **System Architecture**
 

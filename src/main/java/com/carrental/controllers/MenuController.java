@@ -36,6 +36,7 @@ public class MenuController {
                      1. Signup\s
                      2. login
                      3. Forgot password
+                     (0 to quit)
                     \s""");
             System.out.print("option: ");
             int option = scanner.nextInt();
@@ -43,7 +44,22 @@ public class MenuController {
             switch (option) {
                 case 1:
                     if (newUser()) {
-                        System.out.println("Registration Successful! Proceed to login.");
+                        System.out.println("Registration Successful! Proceed to login?." +
+                                "\n+++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                        System.out.println("Choose: " +
+                                "\n1. Yes" +
+                                "\n2. No");
+                        System.out.print(">");
+                        int opt= scanner.nextInt();
+                        scanner.nextLine();
+                        if (opt ==1 ){
+                           login();
+                        } else if (opt == 2) {
+                            System.out.println("Thank you for registering with us!");
+                            break;
+
+                        }
+
                     } else {
                         System.out.println("User registration Failed." +
                                 "Please restart the system if it fails. Contact the Administrator!");
@@ -51,21 +67,23 @@ public class MenuController {
                     }
                     break;
                 case 2:
-                    if (userService.validateLogin()) {
-                        // This condition distinguishes between Admin and a normal user
-                        if (userService.adminPrivileges()) {
-                            adminMenu.welcomeScreen();
-                        } else {
-                            loginScreen();
-                        }
-                    }
-
+                    login();
                     break;
                 case 3:
                     userService.resetPassword();
             }
 
 
+    }
+    public void login() throws SQLException {
+        if (userService.validateLogin()) {
+            // This condition distinguishes between Admin and a normal user
+            if (userService.adminPrivileges()) {
+                adminMenu.welcomeScreen();
+            } else {
+                loginScreen();
+            }
+        }
     }
    // sets the parameter for the new user
    public boolean newUser(){
@@ -74,8 +92,7 @@ public class MenuController {
         String firstName = scanner.nextLine();
         System.out.print("Last name: ");
         String lastName = scanner.nextLine();
-        System.out.print("Email: ");
-        String email = scanner.nextLine();
+        String email = userService.getValidEmail(scanner);
         System.out.print("Password: ");
         String password = scanner.nextLine();
         String userInput = "Customer";

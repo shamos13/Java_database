@@ -5,6 +5,7 @@ import com.carrental.Services.UserService;
 import com.carrental.models.Car;
 
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AdminMenu {
@@ -18,36 +19,34 @@ public class AdminMenu {
         this.userService = userService;
     }
 
-    public void welcomeScreen() throws SQLException{
-        System.out.println("""
-                +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                |\t\t\t\tKiongozi Travellers Admin Control
-                +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                Select a menu control option:
-                1. Manage Cars
-                2. Manage users
-                ( 0 to Exit)
-                """);
-        System.out.print("Option: ");
-        int option = scanner.nextInt();
-        scanner.nextLine();
-
-        switch (option){
-            case 0:
+    public void welcomeScreen() throws SQLException {
+        while (true) {
+            System.out.println("""
+                    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                    |\t\t\t\tKiongozi Travellers Admin Control
+                    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                    Select a menu control option:
+                    1. Manage Cars
+                    2. Manage users
+                    ( 0 to Exit)
+                    """);
+            System.out.print("Option: ");
+            int option = scanner.nextInt();
+            scanner.nextLine();
+            if (option==0){
                 System.out.println("Thank you For Trusting US! Good Bye");
                 break;
-            case 1:
-                manageCars();
-                break;
-            case 2:
-                if (manageUsers()){
-                    System.out.println("Operation completed successfully");
-                }
-                else {
-                    System.out.println("Error occurred during operation!");
+            }
+
+            switch (option) {
+
+                case 1:
+                    manageCars();
+                    break;
+                case 2:
                     manageUsers();
-                }
-                break;
+                    break;
+            }
         }
     }
 
@@ -125,10 +124,26 @@ public class AdminMenu {
         int carID = scanner.nextInt();
         return carService.deleteCar(carID);
     }
-    public boolean manageUsers() throws SQLException{
-        System.out.print("Enter the userID you want to delete: ");
-        int userID = scanner.nextInt();
-       return userService.deleteUsers(userID);
+    public void manageUsers() throws SQLException {
+        boolean success = false;
+        while (!success) {
+            userService.displayUsers();
+            System.out.println("(Press 00 to go back to main menu)");
+            try {
+                System.out.print("Enter the userID you want to delete: ");
+                int userID = scanner.nextInt();
+                if (!userService.deleteUsers(userID)) {
+                    System.out.println("Operation completed successfully!");
+                    success = true;
+                } else {
+                    System.out.println("Error occurred during operation");
+                }
+
+            } catch (Exception e) {
+                System.out.println("Invalid input please Enter a Valid USERID!");
+                scanner.nextLine();
+            }
+        }
     }
 
 }

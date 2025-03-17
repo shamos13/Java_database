@@ -23,6 +23,16 @@ public class BookingService {
     }
     public boolean addBooking(Booking booking){
         long numOfDays = ChronoUnit.DAYS.between(booking.getStartDate(),booking.getEndDate());
+        if (booking.getStartDate().isBefore(LocalDate.now())){
+            System.out.println("The start date needs to be Current!");
+            return false;
+        }
+        if (booking.getEndDate().isBefore(booking.getStartDate())){
+            System.out.println("The End date can not be before the start date");
+            return false;
+        }
+
+
         // Awards a 10% discount on days above a month
         if (numOfDays > 30){
             long totalPrice = (long) (booking.getTotalPrice() * 0.9);
