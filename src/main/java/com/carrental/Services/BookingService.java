@@ -14,11 +14,10 @@ import java.util.Scanner;
 
 public class BookingService {
     private final BookingDAO bookingDAO;
-    private Scanner scanner;
 
     public BookingService(BookingDAO bookingDAO){
         this.bookingDAO = bookingDAO;
-        this.scanner = new Scanner(System.in);
+
 
     }
     public boolean addBooking(Booking booking){
@@ -69,6 +68,7 @@ public class BookingService {
         List<Integer> bookingIDs = bookingDAO.getBookingID(booking);
         if (!bookingIDs.contains(bookingID)){
             System.out.println("The Booking ID is not found!" );
+
         }
         return bookingDAO.clearBooking(bookingID);
     }

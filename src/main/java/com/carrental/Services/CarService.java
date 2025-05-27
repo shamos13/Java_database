@@ -5,7 +5,7 @@ import com.carrental.models.Car;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
+
 
 
 public class CarService {
@@ -47,6 +47,15 @@ public class CarService {
             System.out.println("Car with " + car_id + " does not exist!!");
         }
         return carDao.deleteCar(car_id);
+    }
+
+    public List<Car> getCar(int carID) throws SQLException {
+        List<Car> carByID = carDao.getCarByID(carID);
+        List<Integer> carIDs = carDao.getCarID();
+        if (!carIDs.contains(carID)) {
+            System.out.println("Car with " + carID + " does not exist!!");
+        }
+        return carByID;
     }
 
     public boolean updateCar(String carStatus, int car_id) throws SQLException {

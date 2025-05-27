@@ -80,6 +80,7 @@ public class AdminMenu {
                     deleteCar();
                     break;
                 case 3:
+                    updateCar();
                     break;
                 case 5:
                     carService.displayAllCars();
@@ -144,6 +145,31 @@ public class AdminMenu {
                 scanner.nextLine();
             }
         }
+    }
+    public void updateCar() throws SQLException{
+        // display the cars before any update
+        carService.displayAllCars();
+        System.out.println("---------------------------------------------------------");
+        System.out.print("Enter the Car id of the car you want to Update: ");
+        int input = scanner.nextInt();
+        System.out.println("You have selected: ");
+        carService.displayCars(carService.getCar(input));
+        // Available options include
+
+        System.out.println("Update the status to:\n" +
+                "1. Available\n" +
+                "2. Booked\n" +
+                "3. Maintenance\n");
+        System.out.print(">");
+        int inputOption = scanner.nextInt();
+        String carStatus = "";
+        if (inputOption==1)
+            carStatus="Available";
+        else if (inputOption==2)
+            carStatus="Booked";
+        else if (inputOption==3)
+            carStatus="Maintenance";
+        carService.updateCar(carStatus,input);
     }
 
 }

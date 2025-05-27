@@ -90,25 +90,44 @@ public class CarDAO {
     }
 
     // Get the name and  model of the car by its id
-    public String getCarName(int carID) throws SQLException{
-          String query = "SELECT ";
-          return query;
 
+    // Get car details by its ID
+    public List<Car> getCarByID(int carID) throws SQLException {
+        List<Car> getCarByID = new ArrayList<>();
+        String query = "SELECT * FROM Cars WHERE car_id=?";
+
+        try (PreparedStatement psmt = conn.prepareStatement(query)) {
+            ResultSet rs = psmt.executeQuery();
+            psmt.setInt(1, carID);
+            while (rs.next()) {
+                getCarByID.add(new Car(
+                        rs.getInt("car_id"),
+                        rs.getString("model"),
+                        rs.getString("brand"),
+                        rs.getInt("car_year"),
+                        rs.getString("registration_number"),
+                        rs.getDouble("price_perDay"),
+                        rs.getString("car_status"),
+                        rs.getInt("engine_size")
+                ));
+            }
+            return getCarByID;
+        }
     }
 
 
     // An admin method
     public boolean updateCar(String car_status, int car_id) throws SQLException {
-          try{
-               String updateQuery = "UPDATE Cars SET car_status=? where car_id=?";
-               PreparedStatement psmt = conn.prepareStatement(updateQuery);
-               psmt.setString(1,car_status);
-               psmt.setInt(2,car_id);
+            try {
+                String updateQuery = "UPDATE Cars SET car_status=? where car_id=?";
+                PreparedStatement psmt = conn.prepareStatement(updateQuery);
+                psmt.setString(1, car_status);
+                psmt.setInt(2, car_id);
 
-               return psmt.executeUpdate() > 0;
-          } catch (SQLException e){
-              System.out.println("ERROR: " + e.getMessage());
-          }
+                return psmt.executeUpdate() > 0;
+            } catch (SQLException e) {
+                System.out.println("ERROR: " + e.getMessage());
+            }
 
           return false;
     }
